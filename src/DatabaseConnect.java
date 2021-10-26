@@ -170,6 +170,47 @@ public class DatabaseConnect {
 		
 	}
 
+	
+	public String[][] AppointmentMethod(String logQuery) {
+		// TODO Auto-generated method stub
+		String[][] appointment = new String[100][100];
+		
+		try {
+			rs = st.executeQuery(logQuery);
+			int i=0;
+			while(rs.next()) {
+				String id = rs.getString(1);
+				String name = rs.getString(2);
+				String mobile = rs.getString(3);
+				String address = rs.getString(4);
+				String date = rs.getString(5);
+				String time = rs.getString(6);
+				for(int j=0;j<6;j++) {
+					appointment[i][j] = rs.getString(j+1);
+				}
+				i++;
+			}
+			
+		
+		} catch(Exception e) {
+			
+		}
+		return appointment;
+		
+	}
+
+	public void AppointmentInsert(String queryInsert) {
+		// TODO Auto-generated method stub
+		try {
+			st.executeUpdate(queryInsert);
+			JOptionPane.showMessageDialog(null,"Appointent Booked !");
+			
+		} catch(Exception ex) {
+			JOptionPane.showMessageDialog(null,"Appointent Booking Failed."+ex);
+		}
+		
+	}
+
 
 	
 	

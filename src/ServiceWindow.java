@@ -31,7 +31,7 @@ public class ServiceWindow extends JFrame {
 		 
 		 
 	
- 		String logQuery = "SELECT * FROM `services`";
+ 			String logQuery = "SELECT * FROM `services`";
 
 			DatabaseConnect db = new DatabaseConnect();
 

@@ -48,78 +48,78 @@ public class Appointment extends JFrame{
 		cont.add(inputPanel);
 		
 		JLabel nameLabel = new JLabel("Patient Name : ");
-		nameLabel.setBounds(130,25,100,35);
-		nameLabel.setFont(new Font("Arial",Font.BOLD,19));
+		nameLabel.setBounds(65,25,150,35);
+		nameLabel.setFont(new Font("Arial",Font.BOLD,16));
 		nameLabel.setForeground(Color.white);
 		inputPanel.add(nameLabel);
 		JTextField nametext = new JTextField();
-		nametext.setBounds(200,25,250,35);
+		nametext.setBounds(200,25,300,35);
 		inputPanel.add(nametext);
 		
 		JLabel mobileLabel = new JLabel("Mobile No : ");
-		mobileLabel.setBounds(130,90,100,35);
-		mobileLabel.setFont(new Font("Arial",Font.BOLD,19));
+		mobileLabel.setBounds(90,90,150,35);
+		mobileLabel.setFont(new Font("Arial",Font.BOLD,17));
 		mobileLabel.setForeground(Color.white);
 		inputPanel.add(mobileLabel);
 		JTextField mobiletext = new JTextField();
-		mobiletext.setBounds(200,90,250,35);
+		mobiletext.setBounds(200,90,300,35);
 		inputPanel.add(mobiletext);
 		
 		JLabel addressLabel = new JLabel("Address : ");
-		addressLabel.setBounds(102,150,100,35);
+		addressLabel.setBounds(102,150,150,35);
 		addressLabel.setFont(new Font("Arial",Font.BOLD,17));
 		addressLabel.setForeground(Color.white);
 		inputPanel.add(addressLabel);
 		JTextField addresstext = new JTextField();
-		addresstext.setBounds(200,150,250,35);
+		addresstext.setBounds(200,150,300,35);
 		inputPanel.add(addresstext);
 		
 		JLabel dateLabel = new JLabel("Date : ");
-		dateLabel.setBounds(38,210,170,35);
+		dateLabel.setBounds(130,210,150,35);
 		dateLabel.setFont(new Font("Arial",Font.BOLD,16));
 		dateLabel.setForeground(Color.white);
 		inputPanel.add(dateLabel);
 		JTextField datetext = new JTextField();
-		datetext.setBounds(200,210,250,35);
+		datetext.setBounds(200,210,300,35);
 		inputPanel.add(datetext);
 		
 		JLabel timeLabel = new JLabel("Time : ");
-		timeLabel.setBounds(115,270,100,35);
-		timeLabel.setFont(new Font("Arial",Font.BOLD,19));
+		timeLabel.setBounds(130,270,150,35);
+		timeLabel.setFont(new Font("Arial",Font.BOLD,17));
 		timeLabel.setForeground(Color.white);
 		inputPanel.add(timeLabel);
 		JTextField timetext = new JTextField();
-		timetext.setBounds(200,270,250,35);
+		timetext.setBounds(200,270,300,35);
 		inputPanel.add(timetext);
 		
 		JLabel commentLabel = new JLabel("Comment/Query : ");
-		commentLabel.setBounds(105,320,100,55);
-		commentLabel.setFont(new Font("Arial",Font.BOLD,19));
+		commentLabel.setBounds(40,320,150,55);
+		commentLabel.setFont(new Font("Arial",Font.BOLD,16));
 		commentLabel.setForeground(Color.white);
 		inputPanel.add(commentLabel);
 		JTextField commenttext = new JTextField();
-		commenttext.setBounds(200,330,250,35);
+		commenttext.setBounds(200,330,300,35);
 		inputPanel.add(commenttext);
 		
 		//button field
-		JButton register = new JButton("Register");
-		register.setBounds(330,400,130,40);
-		register.setBackground(new Color(191,42,117));
-		register.setFont(new Font("Arial",Font.BOLD,16));
-		register.setBorder(new LineBorder(Color.gray));
-		register.setForeground(Color.WHITE);
-		inputPanel.add(register);
+		JButton appointment = new JButton("Book Appointment");
+		appointment.setBounds(200,400,200,40);
+		appointment.setBackground(new Color(191,42,117));
+		appointment.setFont(new Font("Arial",Font.BOLD,16));
+		appointment.setBorder(new LineBorder(Color.gray));
+		appointment.setForeground(Color.WHITE);
+		inputPanel.add(appointment);
+		
+	
 		
 	
 		
 		
-		
-		
-		// Register Image Area
+		// appointment Image Area
 		
 		JPanel imgPanel = new JPanel();
 //		imgPanel.setBackground(new Color(75,196,196));
-		imgPanel.setBounds(500,71,500,900);
+		imgPanel.setBounds(550,71,500,900);
 		imgPanel.setBackground(new Color(29,8,74));
 		
 		String path = "https://i.ibb.co/hDFMcWY/appointment.png";
@@ -128,10 +128,10 @@ public class Appointment extends JFrame{
         BufferedImage image = ImageIO.read(url);
 //        System.out.println("Load image into frame...");
         
-        Image newImage = image.getScaledInstance(640, 450, Image.SCALE_DEFAULT);
+        Image newImage = image.getScaledInstance(600, 450, Image.SCALE_DEFAULT);
           
         JLabel imgLabel = new JLabel(new ImageIcon(newImage));
-        imgLabel.setBounds(410,70,640,450);
+        imgLabel.setBounds(610,70,600,450);
         imgPanel.add(imgLabel);
         cont.add(imgPanel);
 		
@@ -140,7 +140,7 @@ public class Appointment extends JFrame{
 		
 		setVisible(true);
 		
-		register.addActionListener(new ActionListener(){
+		appointment.addActionListener(new ActionListener(){
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -156,38 +156,30 @@ public class Appointment extends JFrame{
 				//validation
 				String mobileRex = "(\\+88)?01[3-9]\\d{8}";
 				String nameRex = "^[a-zA-Z. ]+$";
-				
+			    String dateRex = "^([0-2][0-9]||3[0-1])/(0[0-9]||1[0-2])/([0-9][0-9])?[0-9][0-9]$";
+			    String timeRex = "^(0?[1-9]|1[0-2]):([0-5]\\d)\\s?((?:A|P)\\.?M\\.?)$";
+			    
 				//conditions
 				if(!Pattern.matches(nameRex, name)) {
 					JOptionPane.showMessageDialog(null,"In-Valid UserName");
 				}
-				else if(!Pattern.matches(emailRex, email)) {
-					JOptionPane.showMessageDialog(null,"In-Valid Email");
-				}
-				else if(!pass.equals(conPass)) {
-					JOptionPane.showMessageDialog(null,"PassWord and Confirm-password are not matched.");
-				}
-				
-				else if(!Pattern.matches(passRex, pass)) {
-					JOptionPane.showMessageDialog(null,"Please, Give a Strong Password & Following :\r\n"
-							+ "1. A digit must occur at least once \r\n"
-							+ "2. A lower case letter must occur at least once \r\n"
-							+ "3. An upper case letter must occur at least once \r\n"
-							+ "4. A special character must occur at least once \r\n"
-							+ "5. no whitespace allowed in the entire string \r\n"
-							+ "6. Ensure string is of length 8.\r\n");
-				}
-				
 				else if(!Pattern.matches(mobileRex, mobile)) {
-					JOptionPane.showMessageDialog(null,"In-Valid Mobile number");
+					JOptionPane.showMessageDialog(null,"In-Valid Mobile Number");
+				}
+				
+				else if(!Pattern.matches(dateRex, date)) {
+					JOptionPane.showMessageDialog(null,"Date format must me in dd/mm/yyyy");
+				}
+				else if(!Pattern.matches(timeRex, time)) {
+					JOptionPane.showMessageDialog(null,"Time format must me in hh:mm AM/PM");
 				}
 				else {
 					try {
 						
 						DatabaseConnect db = new DatabaseConnect();
-                 		String queryInsert = "INSERT INTO `users`(`name`, `email`, `pass`, `mobile`, `address`) VALUES ('"+name+"','"+email+"','"+pass+"','"+mobile+"','"+address+"')";
+                 		String queryInsert = "INSERT INTO `appointments`(`name`, `mobile`, `address`, `date`, `time`, `comment`) VALUES ('"+name+"','"+mobile+"','"+address+"','"+date+"','"+time+"','"+comment+"')";
 						
-						db.RegisterInsert(queryInsert);
+						db.AppointmentInsert(queryInsert);
 						
 						
 					} catch(Exception e2) {
@@ -202,23 +194,6 @@ public class Appointment extends JFrame{
 			}
 			
 		});
-		loginBtn.addActionListener(new ActionListener(){
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				try {
-					new Login();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-			
-		});
-				
-		
-		
 				
 		
 	}
