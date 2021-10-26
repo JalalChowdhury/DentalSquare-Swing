@@ -1,31 +1,20 @@
-
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Font;
-import java.awt.Image;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import java.util.regex.*;
 
-public class Register extends JFrame implements  ActionListener {
+public class Appointment extends JFrame{
 	
 	private Container cont;
 	
-	public Register() throws IOException {
+	public Appointment() throws IOException{
 		setSize(1000,700);
 //		setVisible(true);
 		setLocationRelativeTo(null);
@@ -46,7 +35,7 @@ public class Register extends JFrame implements  ActionListener {
 		headerPanel.setBounds(100,5,800,60);
 		cont.add(headerPanel);
 		
-		JLabel headerText = new JLabel("Welcome To Dental Square And Create Your Account");
+		JLabel headerText = new JLabel("Request AppointMent");
 		headerText.setForeground(new Color(191,42,117));
 		headerText.setFont(new Font("Arial",Font.BOLD,30));
 		headerPanel.add(headerText);
@@ -58,7 +47,7 @@ public class Register extends JFrame implements  ActionListener {
 		inputPanel.setLayout(null);
 		cont.add(inputPanel);
 		
-		JLabel nameLabel = new JLabel("Name : ");
+		JLabel nameLabel = new JLabel("Patient Name : ");
 		nameLabel.setBounds(130,25,100,35);
 		nameLabel.setFont(new Font("Arial",Font.BOLD,19));
 		nameLabel.setForeground(Color.white);
@@ -67,50 +56,50 @@ public class Register extends JFrame implements  ActionListener {
 		nametext.setBounds(200,25,250,35);
 		inputPanel.add(nametext);
 		
-		JLabel emailLabel = new JLabel("Email : ");
-		emailLabel.setBounds(130,90,100,35);
-		emailLabel.setFont(new Font("Arial",Font.BOLD,19));
-		emailLabel.setForeground(Color.white);
-		inputPanel.add(emailLabel);
-		JTextField emailtext = new JTextField();
-		emailtext.setBounds(200,90,250,35);
-		inputPanel.add(emailtext);
-		
-		JLabel passLabel = new JLabel("Password : ");
-		passLabel.setBounds(102,150,100,35);
-		passLabel.setFont(new Font("Arial",Font.BOLD,17));
-		passLabel.setForeground(Color.white);
-		inputPanel.add(passLabel);
-		JTextField passtext = new JTextField();
-		passtext.setBounds(200,150,250,35);
-		inputPanel.add(passtext);
-		
-		JLabel conPassLabel = new JLabel("Confirm Password : ");
-		conPassLabel.setBounds(38,210,170,35);
-		conPassLabel.setFont(new Font("Arial",Font.BOLD,16));
-		conPassLabel.setForeground(Color.white);
-		inputPanel.add(conPassLabel);
-		JTextField conPasstext = new JTextField();
-		conPasstext.setBounds(200,210,250,35);
-		inputPanel.add(conPasstext);
-		
-		JLabel mobileLabel = new JLabel("Mobile : ");
-		mobileLabel.setBounds(115,270,100,35);
+		JLabel mobileLabel = new JLabel("Mobile No : ");
+		mobileLabel.setBounds(130,90,100,35);
 		mobileLabel.setFont(new Font("Arial",Font.BOLD,19));
 		mobileLabel.setForeground(Color.white);
 		inputPanel.add(mobileLabel);
 		JTextField mobiletext = new JTextField();
-		mobiletext.setBounds(200,270,250,35);
+		mobiletext.setBounds(200,90,250,35);
 		inputPanel.add(mobiletext);
 		
 		JLabel addressLabel = new JLabel("Address : ");
-		addressLabel.setBounds(105,320,100,55);
-		addressLabel.setFont(new Font("Arial",Font.BOLD,19));
+		addressLabel.setBounds(102,150,100,35);
+		addressLabel.setFont(new Font("Arial",Font.BOLD,17));
 		addressLabel.setForeground(Color.white);
 		inputPanel.add(addressLabel);
 		JTextField addresstext = new JTextField();
-		addresstext.setBounds(200,330,250,35);
+		addresstext.setBounds(200,150,250,35);
 		inputPanel.add(addresstext);
+		
+		JLabel dateLabel = new JLabel("Date : ");
+		dateLabel.setBounds(38,210,170,35);
+		dateLabel.setFont(new Font("Arial",Font.BOLD,16));
+		dateLabel.setForeground(Color.white);
+		inputPanel.add(dateLabel);
+		JTextField datetext = new JTextField();
+		datetext.setBounds(200,210,250,35);
+		inputPanel.add(datetext);
+		
+		JLabel timeLabel = new JLabel("Time : ");
+		timeLabel.setBounds(115,270,100,35);
+		timeLabel.setFont(new Font("Arial",Font.BOLD,19));
+		timeLabel.setForeground(Color.white);
+		inputPanel.add(timeLabel);
+		JTextField timetext = new JTextField();
+		timetext.setBounds(200,270,250,35);
+		inputPanel.add(timetext);
+		
+		JLabel commentLabel = new JLabel("Comment/Query : ");
+		commentLabel.setBounds(105,320,100,55);
+		commentLabel.setFont(new Font("Arial",Font.BOLD,19));
+		commentLabel.setForeground(Color.white);
+		inputPanel.add(commentLabel);
+		JTextField commenttext = new JTextField();
+		commenttext.setBounds(200,330,250,35);
+		inputPanel.add(commenttext);
 		
 		//button field
 		JButton register = new JButton("Register");
@@ -121,13 +110,7 @@ public class Register extends JFrame implements  ActionListener {
 		register.setForeground(Color.WHITE);
 		inputPanel.add(register);
 		
-		JButton loginBtn = new JButton("Login");
-		loginBtn.setBounds(195,400,130,40);
-		loginBtn.setBackground(new Color(191,42,117));
-		loginBtn.setFont(new Font("Arial",Font.BOLD,16));
-		loginBtn.setBorder(new LineBorder(Color.gray));
-		loginBtn.setForeground(Color.WHITE);
-		inputPanel.add(loginBtn);
+	
 		
 		
 		
@@ -139,7 +122,7 @@ public class Register extends JFrame implements  ActionListener {
 		imgPanel.setBounds(500,71,500,900);
 		imgPanel.setBackground(new Color(29,8,74));
 		
-		String path = "https://i.ibb.co/4Nd2Jgb/Register-Img.jpg";
+		String path = "https://i.ibb.co/hDFMcWY/appointment.png";
         System.out.println("Get Image from " + path);
         URL url = new URL(path);
         BufferedImage image = ImageIO.read(url);
@@ -164,17 +147,15 @@ public class Register extends JFrame implements  ActionListener {
 				
 				//get input text
 				String name = nametext.getText();
-				String email = emailtext.getText();
-				String pass = passtext.getText();
-				String conPass = conPasstext.getText();
-				String mobile = mobiletext.getText();
+				String time = timetext.getText();
 				String address = addresstext.getText();
+				String date = datetext.getText();
+				String mobile = mobiletext.getText();
+				String comment = commenttext.getText();
 				
 				//validation
 				String mobileRex = "(\\+88)?01[3-9]\\d{8}";
 				String nameRex = "^[a-zA-Z. ]+$";
-				String emailRex = "^[a-zA-Z0-9.]+@[a-z]+.[a-z]+$";
-				String passRex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
 				
 				//conditions
 				if(!Pattern.matches(nameRex, name)) {
@@ -240,17 +221,5 @@ public class Register extends JFrame implements  ActionListener {
 		
 				
 		
-		
-		
-		
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		
-	}
-
-	
-
 }

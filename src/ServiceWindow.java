@@ -19,7 +19,7 @@ public class ServiceWindow extends JFrame {
     ResultSet rs ;
 	
 	public ServiceWindow() {
-		setSize(1700,900);
+		setSize(1750,900);
 //		setVisible(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(3);
@@ -39,7 +39,7 @@ public class ServiceWindow extends JFrame {
 			 
 
 			
-			int boundsX=100;
+			 int boundsX=100;
 			 JPanel panelMain = new JPanel();
              panelMain.setSize(1600,800);
              panelMain.setLayout(null);
@@ -47,8 +47,27 @@ public class ServiceWindow extends JFrame {
 			JLabel[] titleLabel = new JLabel[11];
 			JLabel[] priceLabel = new JLabel[11];
 			
+			JLabel headerLabel = new JLabel("Welcome To Dentist Square");
+			headerLabel.setBounds(450,10,900,80);
+			headerLabel.setFont(new Font("Arial",Font.BOLD,60));
 			
-
+			JLabel headerLabel2 = new JLabel("We care about your smile :)");
+			headerLabel2.setBounds(950,100,900,50);
+			headerLabel2.setFont(new Font("Arial",Font.BOLD,22));
+			
+			panelMain.add(headerLabel);
+			panelMain.add(headerLabel2);
+			
+			
+//			appointment btn
+			
+			JButton AppointBtn = new JButton("Book an Appointment");
+			AppointBtn.setBounds(700,700,200,50);
+			AppointBtn.setBackground(new Color(191,42,117));
+			AppointBtn.setFont(new Font("Arial",Font.BOLD,16));
+			AppointBtn.setBorder(new LineBorder(Color.gray));
+			AppointBtn.setForeground(Color.WHITE);
+			panelMain.add(AppointBtn);
 			
 			
 			
@@ -69,14 +88,14 @@ public class ServiceWindow extends JFrame {
 		             System.out.println("Bounds X " +boundsX);
 		             
 		             label[i] = new JLabel(new ImageIcon(newImage));
-		             label[i].setBounds(boundsX,100,300,150);
+		             label[i].setBounds(boundsX,400,300,150);
 		             
 		             titleLabel[i] = new JLabel("Title : "+service[i].getTitle());
-		             titleLabel[i].setBounds(boundsX,260,300,40);
+		             titleLabel[i].setBounds(boundsX,560,300,40);
 		             titleLabel[i].setFont(new Font("Arial",Font.BOLD,20));
 		             
 		             priceLabel[i] = new JLabel("Price is: $"+service[i].getPrice());
-		             priceLabel[i].setBounds(boundsX,310,300,20);
+		             priceLabel[i].setBounds(boundsX,610,300,20);
 		             priceLabel[i].setFont(new Font("Arial",Font.BOLD,19));
 		             
 

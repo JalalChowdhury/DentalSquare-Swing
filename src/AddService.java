@@ -1,10 +1,16 @@
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Font;
-
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,88 +22,70 @@ import java.util.regex.*;
 
 public class AddService extends JFrame implements  ActionListener {
 	
+	private Container cont;
 	
-	public AddService() {
-		setSize(500,460);
-//		setVisible(true);
+	public AddService() throws IOException {
+		setSize(1000,570);
+		//setVisible(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(3);
 		setLayout(null);
 		
+		/* -------------------------------------------
+			 Container setup
+		---------------------------------------------- */
+		cont = this.getContentPane();
+		cont.setLayout(null);
+		cont.setBackground(new Color(131,166,160,255));
+		
 		// header Panel
 		JPanel headerPanel = new JPanel();
-		headerPanel.setBackground(new Color(54,198,217));
+		headerPanel.setBackground(new Color(131,166,160,255));
 		headerPanel.setBounds(5,5,490,60);
 		add(headerPanel);
 		
 		JLabel headerText = new JLabel("AddService Form !");
+		headerText.setForeground(new Color(191,42,117));
 		headerText.setFont(new Font("Arial",Font.BOLD,30));
 		headerPanel.add(headerText);
 		
 		//Input Field Panel
 		JPanel inputPanel = new JPanel();
-		inputPanel.setBackground(new Color(75,196,196));
-		inputPanel.setBounds(5,70,490,425);
+		inputPanel.setBackground(new Color(131,166,160,255));
+		inputPanel.setBounds(5,70,490,400);
 		inputPanel.setLayout(null);
 		add(inputPanel);
 		
 		JLabel titleLabel = new JLabel("Service Title: ");
-		titleLabel.setBounds(130,5,100,25);
-		titleLabel.setFont(new Font("Arial",Font.BOLD,16));
+		titleLabel.setBounds(70,60,150,35);
+		titleLabel.setFont(new Font("Arial",Font.BOLD,19));
 		titleLabel.setForeground(Color.white);
 		inputPanel.add(titleLabel);
 		JTextField titletext = new JTextField();
-		titletext.setBounds(200,5,200,25);
+		titletext.setBounds(200,60,300,35);
 		inputPanel.add(titletext);
 		
 		JLabel priceLabel = new JLabel("Price : ");
-		priceLabel.setBounds(130,50,100,25);
-		priceLabel.setFont(new Font("Arial",Font.BOLD,16));
+		priceLabel.setBounds(130,120,150,35);
+		priceLabel.setFont(new Font("Arial",Font.BOLD,19));
 		priceLabel.setForeground(Color.white);
 		inputPanel.add(priceLabel);
 		JTextField pricetext = new JTextField();
-		pricetext.setBounds(200,50,200,25);
+		pricetext.setBounds(200,120,300,35);
 		inputPanel.add(pricetext);
 		
 		JLabel imgLabel = new JLabel("Image URL : ");
-		imgLabel.setBounds(95,100,100,25);
-		imgLabel.setFont(new Font("Arial",Font.BOLD,16));
+		imgLabel.setBounds(77,180,150,35);
+		imgLabel.setFont(new Font("Arial",Font.BOLD,19));
 		imgLabel.setForeground(Color.white);
 		inputPanel.add(imgLabel);
 		JTextField imgtext = new JTextField();
-		imgtext.setBounds(200,100,200,25);
+		imgtext.setBounds(200,180,300,35);
 		inputPanel.add(imgtext);
-		
-//		JLabel conimgLabel = new JLabel("Confirm Password : ");
-//		conimgLabel.setBounds(30,150,170,25);
-//		conimgLabel.setFont(new Font("Arial",Font.BOLD,16));
-//		conimgLabel.setForeground(Color.white);
-//		inputPanel.add(conimgLabel);
-//		JTextField conimgtext = new JTextField();
-//		conimgtext.setBounds(200,150,200,25);
-//		inputPanel.add(conimgtext);
-//		
-//		JLabel mobileLabel = new JLabel("Mobile : ");
-//		mobileLabel.setBounds(120,200,100,25);
-//		mobileLabel.setFont(new Font("Arial",Font.BOLD,16));
-//		mobileLabel.setForeground(Color.white);
-//		inputPanel.add(mobileLabel);
-//		JTextField mobiletext = new JTextField();
-//		mobiletext.setBounds(200,200,200,25);
-//		inputPanel.add(mobiletext);
-//		
-//		JLabel addressLabel = new JLabel("Address : ");
-//		addressLabel.setBounds(105,250,100,25);
-//		addressLabel.setFont(new Font("Arial",Font.BOLD,16));
-//		addressLabel.setForeground(Color.white);
-//		inputPanel.add(addressLabel);
-//		JTextField addresstext = new JTextField();
-//		addresstext.setBounds(200,250,200,25);
-//		inputPanel.add(addresstext);
-//		
+				
 		//button field
 		JButton AddService = new JButton("AddService");
-		AddService.setBounds(300,300,100,30);
+		AddService.setBounds(320,250,140,40);
 		AddService.setBackground(new Color(191,42,117));
 		AddService.setFont(new Font("Arial",Font.BOLD,16));
 		AddService.setBorder(new LineBorder(Color.gray));
@@ -105,7 +93,7 @@ public class AddService extends JFrame implements  ActionListener {
 		inputPanel.add(AddService);
 		
 		JButton Services = new JButton("Services");
-		Services.setBounds(200,300,100,30);
+		Services.setBounds(160,250,140,40);
 		Services.setBackground(new Color(191,42,117));
 		Services.setFont(new Font("Arial",Font.BOLD,16));
 		Services.setBorder(new LineBorder(Color.gray));
@@ -119,6 +107,28 @@ public class AddService extends JFrame implements  ActionListener {
 //		loginBtn.setBorder(new LineBorder(Color.gray));
 //		loginBtn.setForeground(Color.WHITE);
 //		inputPanel.add(loginBtn);
+		
+		
+		
+		       // Image Area
+		
+				JPanel imgPanel = new JPanel();
+//				imgPanel.setBackground(new Color(75,196,196));
+				imgPanel.setBounds(500,40,500,550);
+				imgPanel.setBackground(new Color(131,166,160,255));
+				
+				String path = "https://i.ibb.co/jZgG2Gy/Services-Banner.png";
+		        System.out.println("Get Image from " + path);
+		        URL url = new URL(path);
+		        BufferedImage image = ImageIO.read(url);
+//		        System.out.println("Load image into frame...");
+		        
+		        Image newImage = image.getScaledInstance(500, 450, Image.SCALE_DEFAULT);
+		          
+		        JLabel imageLabel = new JLabel(new ImageIcon(newImage));
+		        imageLabel.setBounds(410,70,500,500);
+		        imgPanel.add(imageLabel);
+		        cont.add(imgPanel);
 		
 		setVisible(true);
 		
