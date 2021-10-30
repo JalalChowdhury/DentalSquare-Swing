@@ -44,15 +44,22 @@ public class AddService extends JFrame implements  ActionListener {
 		headerPanel.setBounds(5,5,490,60);
 		add(headerPanel);
 		
-		JLabel headerText = new JLabel("AddService Form !");
+		JLabel adminHomeText = new JLabel("Admin Home");
+		adminHomeText.setBounds(500,40,490,30);
+		adminHomeText.setForeground(new Color(191,42,117));
+		adminHomeText.setFont(new Font("Arial",Font.BOLD,20));
+		headerPanel.add(adminHomeText);
+		
+		JLabel headerText = new JLabel("Add Service");
+		headerText.setBounds(5,40,490,30);
 		headerText.setForeground(new Color(191,42,117));
-		headerText.setFont(new Font("Arial",Font.BOLD,30));
+		headerText.setFont(new Font("Arial",Font.BOLD,20));
 		headerPanel.add(headerText);
 		
 		//Input Field Panel
 		JPanel inputPanel = new JPanel();
 		inputPanel.setBackground(new Color(131,166,160,255));
-		inputPanel.setBounds(5,70,490,400);
+		inputPanel.setBounds(5,70,490,500);
 		inputPanel.setLayout(null);
 		add(inputPanel);
 		
@@ -92,13 +99,37 @@ public class AddService extends JFrame implements  ActionListener {
 		AddService.setForeground(Color.WHITE);
 		inputPanel.add(AddService);
 		
-		JButton Services = new JButton("Services");
-		Services.setBounds(160,250,140,40);
-		Services.setBackground(new Color(191,42,117));
-		Services.setFont(new Font("Arial",Font.BOLD,16));
-		Services.setBorder(new LineBorder(Color.gray));
-		Services.setForeground(Color.WHITE);
-		inputPanel.add(Services);
+//		JButton Services = new JButton("Services");
+//		Services.setBounds(160,250,140,40);
+//		Services.setBackground(new Color(191,42,117));
+//		Services.setFont(new Font("Arial",Font.BOLD,16));
+//		Services.setBorder(new LineBorder(Color.gray));
+//		Services.setForeground(Color.WHITE);
+//		inputPanel.add(Services);
+		
+		JButton AppointBtn = new JButton("Appointments");
+		AppointBtn.setBounds(100,300,140,40);
+		AppointBtn.setBackground(new Color(191,42,117));
+		AppointBtn.setFont(new Font("Arial",Font.BOLD,16));
+		AppointBtn.setBorder(new LineBorder(Color.gray));
+		AppointBtn.setForeground(Color.WHITE);
+		inputPanel.add(AppointBtn);
+		
+		JButton prescriptionBtn = new JButton("Write Prescription");
+		prescriptionBtn.setBounds(260,300,200,40);
+		prescriptionBtn.setBackground(new Color(191,42,117));
+		prescriptionBtn.setFont(new Font("Arial",Font.BOLD,16));
+		prescriptionBtn.setBorder(new LineBorder(Color.gray));
+		prescriptionBtn.setForeground(Color.WHITE);
+		inputPanel.add(prescriptionBtn);
+		
+		JButton logout = new JButton("Log Out");
+		logout.setBounds(500, 10,140,40);
+		logout.setBackground(new Color(191,42,117));
+		logout.setFont(new Font("Arial",Font.BOLD,16));
+		logout.setBorder(new LineBorder(Color.gray));
+		logout.setForeground(Color.WHITE);
+		headerPanel.add(logout);
 		
 //		JButton loginBtn = new JButton("Login");
 //		loginBtn.setBounds(195,300,100,30);
@@ -190,12 +221,44 @@ public class AddService extends JFrame implements  ActionListener {
 		});
 		
 		
-		Services.addActionListener(new ActionListener(){
+//		Services.addActionListener(new ActionListener(){
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				dispose();
+//				new ServiceWindow();
+//			}
+//			
+//		});
+		AppointBtn.addActionListener(new ActionListener(){
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				new ServiceWindow();
+				new Bookings();
+			}
+			
+		});
+	    prescriptionBtn.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new Prescription();
+			}
+			
+		});
+	    logout.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				try {
+					new Login();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 		});

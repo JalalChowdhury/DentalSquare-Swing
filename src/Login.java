@@ -164,6 +164,7 @@ public class Login extends JFrame {
 						
 						DatabaseConnect db = new DatabaseConnect();
 						db.LoginMethod(logQuery,logEmail,logPass);
+						dispose();
 					}
 					
 				});

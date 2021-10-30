@@ -207,6 +207,7 @@ public class Register extends JFrame implements  ActionListener {
                  		String queryInsert = "INSERT INTO `users`(`name`, `email`, `pass`, `mobile`, `address`) VALUES ('"+name+"','"+email+"','"+pass+"','"+mobile+"','"+address+"')";
 						
 						db.RegisterInsert(queryInsert);
+						dispose();
 						
 						
 					} catch(Exception e2) {

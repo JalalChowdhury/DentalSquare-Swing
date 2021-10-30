@@ -39,7 +39,7 @@ public class Bookings extends JFrame {
 	//NavBar Btn
 
 	
-	JButton AppointBtn = new JButton("Book an Appointment");
+	JButton AppointBtn = new JButton("Back to Home");
 	AppointBtn.setBounds(600,20,200,50);
 	AppointBtn.setBackground(new Color(191,42,117));
 	AppointBtn.setFont(new Font("Arial",Font.BOLD,16));
@@ -96,7 +96,7 @@ public class Bookings extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			dispose();
 			try {
-				new Appointment();
+				new AddService();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

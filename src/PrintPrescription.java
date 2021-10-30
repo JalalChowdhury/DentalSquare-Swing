@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.PrinterJob;
+import java.io.IOException;
 import java.util.regex.Pattern;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
@@ -49,6 +50,14 @@ public class PrintPrescription extends JFrame {
     printBtn.setForeground(Color.WHITE);
     headerPanel.add(printBtn);
     headerPanel.add(headerText);
+    
+    JButton AppointBtn = new JButton("Back to Home");
+	AppointBtn.setBounds(10,10,200,40);
+	AppointBtn.setBackground(new Color(191,42,117));
+	AppointBtn.setFont(new Font("Arial",Font.BOLD,16));
+	AppointBtn.setBorder(new LineBorder(Color.gray));
+	AppointBtn.setForeground(Color.WHITE);
+	headerPanel.add(AppointBtn);
 
     // 
     JPanel inputPanel = new JPanel();
@@ -198,6 +207,21 @@ public class PrintPrescription extends JFrame {
 //			-----------------------------
 			
 			
+		}
+		
+	});
+	
+	AppointBtn.addActionListener(new ActionListener(){
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			dispose();
+			try {
+				new AddService();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		
 	});

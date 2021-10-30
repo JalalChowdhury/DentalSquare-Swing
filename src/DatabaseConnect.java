@@ -30,7 +30,7 @@ public class DatabaseConnect {
 		try {
 			st.executeUpdate(queryInsert);
 			JOptionPane.showMessageDialog(null,"Register Complete !!!");
-			
+			new Login();
 		} catch(Exception ex) {
 			JOptionPane.showMessageDialog(null,"Not Inserted !!!"+ex);
 		}
@@ -66,6 +66,7 @@ public class DatabaseConnect {
 	}
 
 	public void AdminLoginMethod(String logQuery, String logUserName, String logPass) {
+		
 		try {
 			rs = st.executeQuery(logQuery);
 			while(rs.next()) {
@@ -81,7 +82,7 @@ public class DatabaseConnect {
 			if(found==1) {
 //				JOptionPane.showMessageDialog(null, "Admin Logged in");
 				//new window 
-				dispose();
+				
 
 				new AddService();
 

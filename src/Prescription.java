@@ -5,6 +5,7 @@ import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.io.IOException;
 import java.util.regex.Pattern;
 
 import javax.swing.*;
@@ -146,6 +147,15 @@ public class Prescription extends JFrame {
 		saveBtn.setForeground(Color.WHITE);
 		inputPanel.add(saveBtn);
 		
+		JButton homeBtn = new JButton("Back to Home");
+		homeBtn.setBounds(1180,740,200,40);
+		homeBtn.setBackground(new Color(191,42,117));
+		homeBtn.setFont(new Font("Arial",Font.BOLD,16));
+		homeBtn.setBorder(new LineBorder(Color.gray));
+		homeBtn.setForeground(Color.WHITE);
+		inputPanel.add(homeBtn);
+		
+		
 		
 		setVisible(true);
 		
@@ -183,6 +193,7 @@ public class Prescription extends JFrame {
 					JOptionPane.showMessageDialog(null,"In-Valid Mobile number");
 				}
 				else {
+					dispose();
 					try {
 						
 						DatabaseConnect db = new DatabaseConnect();
@@ -190,7 +201,7 @@ public class Prescription extends JFrame {
 						
 						db.PrescriptionInsert(queryInsert);
 						
-		
+						
 						new PrintPrescription(name, age, mobile, address, pressure, temperature, symptoms, medicine);
 
 						
@@ -211,6 +222,21 @@ public class Prescription extends JFrame {
 				
 				
 				
+			}
+			
+		});
+		
+		homeBtn.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				try {
+					new AddService();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 		});

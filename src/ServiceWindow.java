@@ -72,7 +72,7 @@ public class ServiceWindow extends JFrame {
 			headerLabel2.setBounds(950,190,900,50);
 			headerLabel2.setFont(new Font("Arial",Font.BOLD,22));
 			
-			JLabel popularLabel = new JLabel("Top Popular Our Services");
+			JLabel popularLabel = new JLabel("Our Top Services");
 			popularLabel.setBounds(500,250,1200,80);
 			popularLabel.setFont(new Font("Arial",Font.BOLD,30));
 			

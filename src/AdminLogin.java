@@ -176,6 +176,7 @@ public class AdminLogin extends JFrame {
 						
 						DatabaseConnect db = new DatabaseConnect();
 						db.AdminLoginMethod(logQuery,logUserName,logPass);
+						dispose();
 					}
 					
 				});
