@@ -1,12 +1,19 @@
-
-
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import java.util.regex.Pattern;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 
 public class Prescription extends JFrame {
 	
+	private Container cont;
 	
 	public Prescription() {
 		setSize(1600,950);
@@ -15,13 +22,20 @@ public class Prescription extends JFrame {
 		setDefaultCloseOperation(3);
 		setLayout(null);
 		
+		 /* -------------------------------------------
+				Container setup
+		---------------------------------------------- */
+		cont = this.getContentPane();
+		cont.setLayout(null);
+		cont.setBackground(new Color(130, 221, 237));
+		
 		
 		
 		
 		
 		 // header Panel
 		JPanel headerPanel = new JPanel();
-//		headerPanel.setBackground(new Color(29,8,74));
+		headerPanel.setBackground(new Color(130, 221, 237));
 		headerPanel.setBounds(400,5,750,60);
 		add(headerPanel);
 		
@@ -32,7 +46,7 @@ public class Prescription extends JFrame {
 		
 		//Input Field Panel
 		JPanel inputPanel = new JPanel();
-//		inputPanel.setBackground(new Color(29,8,74));
+		inputPanel.setBackground(new Color(130, 221, 237));
 		inputPanel.setBounds(5,70,1530,880);
 		inputPanel.setLayout(null);
 		add(inputPanel);
@@ -79,7 +93,7 @@ public class Prescription extends JFrame {
 		/*--------------------------------------
 	        Diagonosis
 	    ------------------------------------------*/
-		JLabel diagnosisLabel = new JLabel("Diagnosis : ");
+		JLabel diagnosisLabel = new JLabel("Diagnosis");
 		diagnosisLabel.setBounds(70,120,200,35);
 		diagnosisLabel.setFont(new Font("Arial",Font.BOLD,20));
 //		emailLabel.setForeground(Color.white);
@@ -124,18 +138,87 @@ public class Prescription extends JFrame {
 		inputPanel.add(MedicineArea);
 		
 		// save button
-		JButton register = new JButton("Save");
-		register.setBounds(1400,740,100,40);
-		register.setBackground(new Color(191,42,117));
-		register.setFont(new Font("Arial",Font.BOLD,16));
-		register.setBorder(new LineBorder(Color.gray));
-		register.setForeground(Color.WHITE);
-		inputPanel.add(register);
-		
-		
+		JButton saveBtn = new JButton("Save");
+		saveBtn.setBounds(1400,740,100,40);
+		saveBtn.setBackground(new Color(191,42,117));
+		saveBtn.setFont(new Font("Arial",Font.BOLD,16));
+		saveBtn.setBorder(new LineBorder(Color.gray));
+		saveBtn.setForeground(Color.WHITE);
+		inputPanel.add(saveBtn);
 		
 		
 		setVisible(true);
+		
+		
+
+		saveBtn.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				//get input text
+				String name = nametext.getText();
+				String age = agetext.getText();
+				String pressure = pressuretext.getText();
+				String temperature = temperaturetext.getText();
+				String mobile = mobiletext.getText();
+				String address = addresstext.getText();
+				String symptoms = symptomsArea.getText();
+				String medicine = MedicineArea.getText();
+				
+				
+				//validation
+				String mobileRex = "(\\+88)?01[3-9]\\d{8}";
+				String nameRex = "^[a-zA-Z. ]+$";
+				String emailRex = "^[a-zA-Z0-9.]+@[a-z]+.[a-z]+$";
+				String passRex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+				
+				//conditions
+				if(!Pattern.matches(nameRex, name)) {
+					JOptionPane.showMessageDialog(null,"In-Valid UserName");
+				}
+		
+				
+				else if(!Pattern.matches(mobileRex, mobile)) {
+					JOptionPane.showMessageDialog(null,"In-Valid Mobile number");
+				}
+				else {
+					try {
+						
+						DatabaseConnect db = new DatabaseConnect();
+                 		String queryInsert = "INSERT INTO `prescription`(`name`, `age`, `mobile`, `address`, `pressure`, `temperature`, `symptoms`, `medicine`) VALUES ('"+name+"','"+age+"','"+mobile+"','"+address+"','"+pressure+"','"+temperature+"','"+symptoms+"','"+medicine+"')";
+						
+						db.PrescriptionInsert(queryInsert);
+						
+		
+						new PrintPrescription(name, age, mobile, address, pressure, temperature, symptoms, medicine);
+
+						
+						
+						
+						
+						
+					} catch(Exception e2) {
+						System.err.println(e2);
+					}
+					
+					
+					
+					
+					
+				}
+				
+				
+				
+				
+			}
+			
+		});
+		
+		
+		
+		
+		
 	}
 
 }

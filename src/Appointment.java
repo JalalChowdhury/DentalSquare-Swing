@@ -103,12 +103,21 @@ public class Appointment extends JFrame{
 		
 		//button field
 		JButton appointment = new JButton("Book Appointment");
-		appointment.setBounds(200,400,200,40);
+		appointment.setBounds(300,400,200,40);
 		appointment.setBackground(new Color(191,42,117));
 		appointment.setFont(new Font("Arial",Font.BOLD,16));
 		appointment.setBorder(new LineBorder(Color.gray));
 		appointment.setForeground(Color.WHITE);
 		inputPanel.add(appointment);
+		
+		// services //button field
+		JButton services = new JButton("Go to Srvices");
+		services.setBounds(110,400,180,40);
+		services.setBackground(new Color(191,42,117));
+		services.setFont(new Font("Arial",Font.BOLD,16));
+		services.setBorder(new LineBorder(Color.gray));
+		services.setForeground(Color.WHITE);
+		inputPanel.add(services);
 		
 	
 		
@@ -191,6 +200,15 @@ public class Appointment extends JFrame{
 				
 				
 				
+			}
+			
+		});
+		services.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new ServiceWindow();
 			}
 			
 		});

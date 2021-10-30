@@ -8,8 +8,9 @@ public class Main {
 //		new AddService();
 //		new Register();
 //		new ServiceWindow();
-//		new Bookings();
-		new Prescription();
+		new Bookings();
+//		new Prescription();
+	
 	}
 
 }

@@ -211,6 +211,19 @@ public class DatabaseConnect {
 		
 	}
 
+	public void PrescriptionInsert(String queryInsert) {
+		// TODO Auto-generated method stub
+		
+		try {
+			st.executeUpdate(queryInsert);
+			JOptionPane.showMessageDialog(null,"Prescription Saved !!!");
+			
+		} catch(Exception ex) {
+			JOptionPane.showMessageDialog(null,"Not Saved: "+ex);
+		}
+		
+	}
+
 
 	
 	
